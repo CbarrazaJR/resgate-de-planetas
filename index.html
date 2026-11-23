@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resgate de Planetas</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="jogo.js" defer></script>
+</head>
+<body>
+  <header class="cabecalho">
+    <h1>Resgate de Planetas</h1>
+    <button type="button" id="reiniciar" class="secundario">Reiniciar partida</button>
+  </header>
+
+  <main>
+    <section class="planeta" aria-labelledby="nome-planeta">
+      <h2 id="nome-planeta">Astéria</h2>
+      <p id="fase" role="status">Núcleo inativo.</p>
+      <img id="imagem-planeta" src="planeta.webp" alt="" width="760" height="760">
+      <button type="button" id="gerar" class="principal">Gerar energia (+1)</button>
+      <dl class="energia">
+        <div><dt>Energia disponível</dt><dd id="saldo">0</dd></div>
+        <div><dt>Energia por segundo</dt><dd id="por-segundo">0</dd></div>
+      </dl>
+    </section>
+
+    <div class="controles">
+      <section aria-labelledby="titulo-objetivos">
+        <h2 id="titulo-objetivos">Objetivos da missão</h2>
+        <p id="resumo">0 de 4 objetivos concluídos</p>
+        <progress id="progresso" value="0" max="4" aria-label="Objetivos concluídos"></progress>
+        <ol id="objetivos"></ol>
+      </section>
+      <section aria-labelledby="titulo-melhorias">
+        <h2 id="titulo-melhorias">Melhorias</h2>
+        <div id="melhorias"></div>
+      </section>
+    </div>
+  </main>
+
+  <p id="aviso" role="status" hidden></p>
+</body>
+</html>
