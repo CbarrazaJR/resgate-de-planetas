@@ -1,3 +1,4 @@
+/* Cores e fonte padrão do jogo. As variáveis são usadas com var(). */
 :root {
   color-scheme: dark;
   font-family: system-ui, sans-serif;
@@ -9,23 +10,33 @@
   --verde: #83e0ba;
 }
 
+/* Inclui bordas e padding no cálculo da largura dos elementos. */
 * { box-sizing: border-box; }
+/* Centraliza a página e define a largura máxima e o espaço nas bordas. */
 body { max-width: 960px; margin: auto; padding: 24px; background: var(--fundo); color: var(--texto); }
+/* Remove margens padrão e ajusta os tamanhos dos textos. */
 h1, h2, p { margin: 0; }
 h1 { font-size: clamp(1.35rem, 4vw, 1.85rem); }
 h2 { font-size: 1.08rem; }
 p { color: var(--suave); font-size: .9rem; }
+/* Aparência geral dos botões e estados de mouse, teclado e bloqueio. */
 button { font: inherit; cursor: pointer; border-radius: 8px; border: 1px solid var(--borda); color: var(--texto); }
 button:disabled { color: var(--suave); cursor: default; }
 button:enabled:hover { border-color: var(--verde); }
 button:focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; }
+/* Coloca o título e o botão de reinício lado a lado. */
 .cabecalho { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+/* Estilo do botão de reiniciar. */
 .secundario { padding: 8px 12px; background: transparent; font-size: .85rem; }
+/* Divide o jogo em duas colunas do mesmo tamanho. */
 main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+/* Fundo, borda e espaço interno de cada área. */
 section { padding: 20px; border: 1px solid var(--borda); border-radius: 12px; background: var(--painel); }
+/* Centraliza o conteúdo do planeta e ajusta título e mensagem. */
 .planeta { text-align: center; }
 .planeta h2 { font-size: 1.75rem; }
 #fase { margin-top: 4px; }
+/* Tamanho e recorte circular da imagem. O filtro deixa o planeta apagado. */
 #imagem-planeta {
   display: block;
   width: min(100%, 235px);
@@ -35,31 +46,43 @@ section { padding: 20px; border: 1px solid var(--borda); border-radius: 12px; ba
   filter: grayscale(.85) brightness(.65);
   transition: filter .45s;
 }
+/* Muda a cor e o brilho conforme a fase definida pelo JavaScript. */
 #imagem-planeta[data-fase="1"] { filter: grayscale(.55) brightness(.78); }
 #imagem-planeta[data-fase="2"] { filter: grayscale(.3) brightness(.92); }
 #imagem-planeta[data-fase="3"] { filter: grayscale(.1) brightness(1.02); }
 #imagem-planeta[data-fase="4"] { filter: saturate(1.22) brightness(1.12); }
+/* Destaca o botão de gerar energia e dá retorno visual ao clique. */
 .principal { width: min(100%, 275px); min-height: 46px; padding: 9px; background: var(--verde); color: #102820; font-weight: 750; touch-action: manipulation; }
 .principal:enabled:hover { background: #a6edcf; }
 .principal:active { transform: translateY(1px); }
+/* Organiza os dois indicadores de energia em colunas. */
 .energia { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--borda); }
 .energia dt { color: var(--suave); font-size: .82rem; }
 .energia dd { margin: 3px 0 0; font-size: 1.4rem; font-weight: 700; overflow-wrap: anywhere; }
+/* Espaço entre as áreas de objetivos e melhorias. */
 .controles { display: grid; gap: 16px; }
 #resumo { margin-top: 5px; }
+/* Tamanho e cor da barra de objetivos concluídos. */
 progress { display: block; height: 9px; width: 100%; margin: 9px 0 12px; accent-color: var(--verde); }
+/* Espaçamento da lista de objetivos e cor das etapas concluídas. */
 #objetivos { display: grid; gap: 10px; margin: 0; padding-left: 1.45rem; }
 #objetivos li::marker { color: var(--suave); }
 #objetivos li[data-concluido="true"]::marker { color: var(--verde); }
+/* Destaque do título e texto menor dos requisitos de cada objetivo. */
 .objetivo-titulo { font-weight: 650; }
 .objetivo-detalhes { display: block; margin-top: 2px; color: var(--suave); font-size: .82rem; line-height: 1.4; }
+/* Organiza a lista de compras. */
 #melhorias { display: grid; gap: 8px; margin-top: 10px; }
+/* Alinha o nome e o preço de cada melhoria. */
 .melhoria { display: flex; align-items: center; justify-content: space-between; text-align: left; gap: 10px; padding: 9px 10px; background: #252d3b; }
 .melhoria span { display: block; }
 .melhoria small { color: var(--suave); font-size: .79rem; }
+/* Mantém o preço na mesma linha. */
 .preco { font-size: .84rem; white-space: nowrap; }
+/* Espaço acima da mensagem de erro ao salvar. */
 #aviso { margin-top: 14px; }
 
+/* Em telas pequenas, usa uma coluna e reduz imagem e espaçamentos. */
 @media (max-width: 640px) {
   body { padding: 16px; }
   main { grid-template-columns: 1fr; gap: 12px; }
@@ -68,6 +91,7 @@ progress { display: block; height: 9px; width: 100%; margin: 9px 0 12px; accent-
   #imagem-planeta { width: min(100%, 160px); margin-bottom: 14px; }
 }
 
+/* Desativa a transição para quem prefere menos movimento. */
 @media (prefers-reduced-motion: reduce) {
   #imagem-planeta { transition: none; }
 }
